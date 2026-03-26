@@ -38,13 +38,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if(ctaForm) {
         ctaForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const emailInput = ctaForm.querySelector('.cta-input');
-            const btn = ctaForm.querySelector('.btn-tertiary');
+            const nameInput = ctaForm.querySelector('#waitlist-name');
+            const emailInput = ctaForm.querySelector('#waitlist-email');
+            const discordOptIn = ctaForm.querySelector('#discord-opt-in');
+            const errorText = ctaForm.querySelector('#waitlist-error');
+            const btn = ctaForm.querySelector('.btn-alt');
+            const nameValue = nameInput.value.trim();
+            const emailValue = emailInput.value.trim();
+            errorText.textContent = '';
+
+            if (!nameValue) {
+                errorText.textContent = 'Please enter your name.';
+                nameInput.focus();
+                return;
+            }
+
+            if (nameValue.length > 100) {
+                errorText.textContent = 'Name must be 100 characters or less.';
+                nameInput.focus();
+                return;
+            }
+
+            if (!emailInput.checkValidity()) {
+                errorText.textContent = 'Please enter a valid email address.';
+                emailInput.focus();
+                return;
+            }
             
             const originalText = btn.innerHTML;
             btn.innerHTML = 'Saved!';
             btn.style.backgroundColor = '#34d399'; // Green success color
+            nameInput.value = '';
             emailInput.value = '';
+
+            if (discordOptIn && discordOptIn.checked) {
+                window.open('https://discord.gg/colqad', '_blank', 'noopener,noreferrer');
+            }
             
             setTimeout(() => {
                 btn.innerHTML = originalText;
