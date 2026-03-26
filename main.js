@@ -41,19 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const nameInput = ctaForm.querySelector('#waitlist-name');
             const emailInput = ctaForm.querySelector('#waitlist-email');
             const discordOptIn = ctaForm.querySelector('#discord-opt-in');
+            const errorText = ctaForm.querySelector('#waitlist-error');
             const btn = ctaForm.querySelector('.btn-alt');
             const validEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const nameValue = nameInput.value.trim();
             const emailValue = emailInput.value.trim();
+            errorText.textContent = '';
 
             if (!nameValue || nameValue.length > 100) {
-                alert('Please enter your name (up to 100 characters).');
+                errorText.textContent = 'Please enter your name (up to 100 characters).';
                 nameInput.focus();
                 return;
             }
 
             if (!validEmailPattern.test(emailValue)) {
-                alert('Please enter a valid email address.');
+                errorText.textContent = 'Please enter a valid email address.';
                 emailInput.focus();
                 return;
             }
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emailInput.value = '';
 
             if (discordOptIn && discordOptIn.checked) {
-                window.open('https://discord.gg/', '_blank', 'noopener,noreferrer');
+                window.open('https://discord.gg/your-invite-code', '_blank', 'noopener,noreferrer');
             }
             
             setTimeout(() => {

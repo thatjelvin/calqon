@@ -789,6 +789,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
     accent-color: var(--primary-container);
 }
 
+.cta-error {
+    min-height: 1.25rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    color: #fda4af;
+    text-align: left;
+}
+
 /* Footer */
 .footer {
     padding-top: 4rem;
