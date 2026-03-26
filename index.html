@@ -244,9 +244,14 @@
                         <p class="cta-subtitle">Join the waitlist to be among the first to experience the future of quantitative learning.</p>
                         <form class="cta-form" id="cta-form">
                             <div class="input-group">
-                                <input type="email" placeholder="Enter your email" required class="cta-input">
+                                <input type="text" id="waitlist-name" name="name" placeholder="Enter your name" required maxlength="100" autocomplete="name" class="cta-input">
+                                <input type="email" id="waitlist-email" name="email" placeholder="Enter your email" required autocomplete="email" class="cta-input">
                                 <button type="submit" class="btn btn-alt">Join Waitlist</button>
                             </div>
+                            <label class="cta-discord-option" for="discord-opt-in">
+                                <input type="checkbox" id="discord-opt-in" class="cta-discord-checkbox">
+                                Prompt me to join the app Discord after joining the waitlist.
+                            </label>
                             <p class="cta-terms">By joining, you agree to our Terms of Service.</p>
                         </form>
                     </div>
