@@ -43,18 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const discordOptIn = ctaForm.querySelector('#discord-opt-in');
             const errorText = ctaForm.querySelector('#waitlist-error');
             const btn = ctaForm.querySelector('.btn-alt');
-            const validEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const nameValue = nameInput.value.trim();
             const emailValue = emailInput.value.trim();
             errorText.textContent = '';
 
-            if (!nameValue || nameValue.length > 100) {
-                errorText.textContent = 'Please enter your name (up to 100 characters).';
+            if (!nameValue) {
+                errorText.textContent = 'Please enter your name.';
                 nameInput.focus();
                 return;
             }
 
-            if (!validEmailPattern.test(emailValue)) {
+            if (nameValue.length > 100) {
+                errorText.textContent = 'Name must be 100 characters or less.';
+                nameInput.focus();
+                return;
+            }
+
+            if (!emailInput.checkValidity()) {
                 errorText.textContent = 'Please enter a valid email address.';
                 emailInput.focus();
                 return;
@@ -67,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emailInput.value = '';
 
             if (discordOptIn && discordOptIn.checked) {
-                window.open('https://discord.gg/your-invite-code', '_blank', 'noopener,noreferrer');
+                window.open('https://discord.gg/colqad', '_blank', 'noopener,noreferrer');
             }
             
             setTimeout(() => {
